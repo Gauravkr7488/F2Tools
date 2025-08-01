@@ -1,0 +1,96 @@
+{
+  "name": "f2toolinterface",
+  "displayName": "F2ToolInterface",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "f2toolinterface.CopyAsF2YamlReference",
+        "title": "Copy As Yaml Reference"
+      },
+      {
+        "command": "f2toolinterface.CopyAsF2YamlLink",
+        "title": "Copy As Yaml Link"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "f2toolinterface.CopyAsF2YamlReference",
+        "key": "ctrl+shift+2",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "f2toolinterface.CopyAsF2YamlLink",
+        "key": "ctrl+shift+4",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "F2ToolInterface",
+      "properties": {
+        "F2ToolInterface.ignoreWords": {
+          "type": "array",
+          "description": "Words to remove from the extracted YAML path.",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "EstimatedTODO",
+            "DraftingTODO",
+            "TODO",
+            "Estimated",
+            "OnGoing",
+            "OnHold",
+            "Cancelled",
+            "Paused",
+            "InProgress",
+            "Done",
+            "CurrentFocus",
+            "Blocked",
+            "Drafting",
+            "Draft",
+            "Reviewed",
+            "InDev",
+            "Developing",
+            "InQA",
+            "BugFixing",
+            "QAPassed"
+          ]
+        },
+        "F2ToolInterface.PathSeparator": {
+          "type": "string",
+          "description": "The separator to use in the extracted YAML path.",
+          "default": "."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.97.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^9.19.0",
+    "typescript": "^5.7.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
